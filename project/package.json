@@ -16,8 +16,8 @@
   },
   "scripts": {
     "generate-data": "node src/data/module-data-generator.cjs 10",
-    "dev": "npm run generate-data && react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run generate-data && react-scripts start",
+    "build": "node src/data/module-data-generator.cjs && react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -38,5 +38,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://backend:3000"
 }

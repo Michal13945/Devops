@@ -1,51 +1,51 @@
 export const data = [{
             id: 1,
-            brand: "Toyota",
-            year: "1997",
-            registrationNumber: "WA 90607"
+            brand: "Honda",
+            year: "1993",
+            registrationNumber: "GD 77341"
         },{
             id: 2,
-            brand: "BMW",
-            year: "2012",
-            registrationNumber: "WA 89599"
+            brand: "Honda",
+            year: "1994",
+            registrationNumber: "GD 35379"
         },{
             id: 3,
-            brand: "Honda",
-            year: "2003",
-            registrationNumber: "WA 98178"
+            brand: "BMW",
+            year: "2032",
+            registrationNumber: "WA 77794"
         },{
             id: 4,
-            brand: "BMW",
-            year: "2015",
-            registrationNumber: "KR 94814"
+            brand: "Toyota",
+            year: "1996",
+            registrationNumber: "KR 52814"
         },{
             id: 5,
-            brand: "Honda",
-            year: "1999",
-            registrationNumber: "LU 83509"
+            brand: "BMW",
+            year: "2031",
+            registrationNumber: "PO 62083"
         },{
             id: 6,
             brand: "Toyota",
             year: "2014",
-            registrationNumber: "GD 38493"
+            registrationNumber: "WA 33018"
         },{
             id: 7,
-            brand: "Honda",
-            year: "1991",
-            registrationNumber: "WA 96780"
+            brand: "BMW",
+            year: "1999",
+            registrationNumber: "KR 42619"
         },{
             id: 8,
-            brand: "Honda",
-            year: "2018",
-            registrationNumber: "PO 59925"
+            brand: "BMW",
+            year: "2005",
+            registrationNumber: "WA 38520"
         },{
             id: 9,
             brand: "BMW",
-            year: "1999",
-            registrationNumber: "KR 29933"
+            year: "2006",
+            registrationNumber: "PO 28303"
         },{
             id: 10,
             brand: "Toyota",
-            year: "2008",
-            registrationNumber: "KR 96501"
+            year: "2011",
+            registrationNumber: "PO 73556"
         },];
