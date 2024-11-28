@@ -2,9 +2,11 @@ name: Docker Build Check
 
 on:
   push:
-    branches: ["branch"]
+    branches:
+      - "branch"
   pull_request:
-    branches: ["branch"]
+    branches:
+      - "branch"
 
 jobs:
   backend-docker-build:
@@ -14,6 +16,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Debug backend directory
+        run: |
+          echo "Listing backend directory"
+          ls -al ./backend
 
       - name: Build Backend Docker Image
         working-directory: ./backend
@@ -31,6 +38,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Debug frontend directory
+        run: |
+          echo "Listing frontend directory"
+          ls -al .
 
       - name: Install dependencies and build frontend
         working-directory: .
