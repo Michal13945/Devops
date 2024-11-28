@@ -20,12 +20,12 @@ jobs:
       - name: Debug backend directory
         run: |
           echo "Listing backend directory"
-          ls -al ./backend
+          ls -al ./project/backend
 
       - name: Build Backend Docker Image
-        working-directory: ./backend
+        working-directory: ./project/backend
         run: |
-          docker build -t backend-app .
+          docker build -t backend-app ./project
 
       - name: Test Backend Docker Image
         run: |
@@ -53,7 +53,7 @@ jobs:
       - name: Build Frontend Docker Image
         working-directory: .
         run: |
-          docker build -t frontend-app .
+          docker build -t frontend-app ./project
 
       - name: Test Frontend Docker Image
         run: |
