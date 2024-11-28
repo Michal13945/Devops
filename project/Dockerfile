@@ -1,5 +1,5 @@
-# Use the official Node.js image as the base image
-FROM node:14
+# Build stage
+FROM node:14 AS build
 
 # Set the working directory
 WORKDIR /usr/src/app
@@ -13,8 +13,17 @@ RUN npm install
 # Copy the rest of the application to the working directory
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 3000
+# Build the application
+RUN npm run build
 
-# Command to run the application
-CMD ["npm", "run", "start"]
+# Production stage
+FROM nginx:alpine
+
+# Copy the built application to the Nginx server
+COPY --from=build /usr/src/app/build /usr/share/nginx/html
+
+# Expose the port the app runs on
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
