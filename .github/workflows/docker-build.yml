@@ -17,15 +17,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Debug backend directory
+      - name: Debug repository structure
         run: |
+          echo "Listing root directory"
+          ls -al
+          echo "Listing project directory"
+          ls -al ./project
           echo "Listing backend directory"
           ls -al ./project/backend
 
       - name: Build Backend Docker Image
         working-directory: ./project/backend
         run: |
-          docker build -t backend-app ./project
+          docker build -t backend-app .
 
       - name: Test Backend Docker Image
         run: |
@@ -42,18 +46,18 @@ jobs:
       - name: Debug frontend directory
         run: |
           echo "Listing frontend directory"
-          ls -al .
+          ls -al ./project
 
       - name: Install dependencies and build frontend
-        working-directory: .
+        working-directory: ./project
         run: |
           npm install
           npm run build
 
       - name: Build Frontend Docker Image
-        working-directory: .
+        working-directory: ./project
         run: |
-          docker build -t frontend-app ./project
+          docker build -t frontend-app .
 
       - name: Test Frontend Docker Image
         run: |

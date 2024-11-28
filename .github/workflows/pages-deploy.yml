@@ -19,16 +19,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./src
+          cd ./project/src  # Zmiana ścieżki do src w katalogu project
           npm install
 
       - name: Build application
         run: |
-          cd ./src
+          cd ./project/src  # Zmiana ścieżki do src w katalogu project
           npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./src/build
+          publish_dir: ./project/src/build
