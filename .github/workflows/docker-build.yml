@@ -2,11 +2,9 @@ name: Docker Build Check
 
 on:
   push:
-    branches:
-      - main
+    branches: ["branch"]
   pull_request:
-    branches:
-      - main
+    branches: ["branch"]
 
 jobs:
   backend-docker-build:
