@@ -15,6 +15,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Going to backend
+        run: |
+          cd project/backend
+
       - name: Build Backend Docker Image
         run: |
           docker build -t backend-app ./backend
@@ -30,6 +34,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Going to frontend
+        run: |
+          cd project
 
       - name: Build Frontend Docker Image
         run: |
