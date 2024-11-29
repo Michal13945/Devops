@@ -17,19 +17,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Debug project directory
+        run: |
+          echo "Listing project directory"
+          ls -al ./
+
       - name: Debug backend directory
         run: |
           echo "Listing backend directory"
-          ls -al ./backend
+          ls -al ./project/backend
 
       - name: Build Backend Docker Image
-        working-directory: ./backend
+        working-directory: ./project/backend
         run: |
-          docker build -t backend-app .  # Budujemy backend Docker image
+          docker build -t backend-app .
 
       - name: Test Backend Docker Image
         run: |
-          docker run --rm -p 3000:3000 backend-app npm start  # Uruchamiamy kontener z backendem
+          docker run --rm -p 3000:3000 backend-app npm start
 
   frontend-docker-build:
     name: Build and Test Frontend Docker Image
@@ -39,22 +44,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Debug project directory
+        run: |
+          echo "Listing project directory"
+          ls -al ./
+
       - name: Debug frontend directory
         run: |
           echo "Listing frontend directory"
-          ls -al ./src  # Przechodzimy do katalogu src, bo tam jest frontend
+          ls -al ./project/src
 
       - name: Install dependencies and build frontend
-        working-directory: ./src
+        working-directory: ./project/src
         run: |
-          npm install
-          npm run build  # Budujemy aplikację frontendową
+          npm install  
+          npm run build
 
       - name: Build Frontend Docker Image
-        working-directory: ./src
+        working-directory: ./project/src
         run: |
-          docker build -t frontend-app .  # Budujemy frontend Docker image
+          docker build -t frontend-app .
 
       - name: Test Frontend Docker Image
         run: |
-          docker run --rm -p 8080:80 frontend-app  # Uruchamiamy kontener z frontendem
+          docker run --rm -p 8080:80 frontend-app

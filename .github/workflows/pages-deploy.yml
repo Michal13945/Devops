@@ -20,16 +20,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./src  # Przechodzimy do katalogu src, gdzie znajduje się aplikacja React
+          cd ./project/src  # Ścieżka do folderu frontend
           npm install  # Instalujemy zależności w folderze src
 
       - name: Build application
         run: |
-          cd ./src  # Przechodzimy do katalogu src
+          cd ./project/src  # Przechodzimy do katalogu frontend
           npm run build  # Budujemy aplikację React
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./src/build
+          publish_dir: ./project/src/build
