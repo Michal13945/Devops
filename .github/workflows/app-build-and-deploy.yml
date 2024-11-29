@@ -31,6 +31,10 @@ jobs:
           npm run build
         working-directory: ./project
 
+      - name: List build directory (for debugging)
+        run: ls -la ./project/build
+        working-directory: ./project
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
