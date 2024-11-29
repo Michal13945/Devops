@@ -25,12 +25,6 @@ jobs:
         run: npm install
         working-directory: ./project
 
-      - name: Build project
-        run: |
-          npm install @babel/plugin-proposal-private-property-in-object
-          npm run build
-        working-directory: ./project
-
       - name: List build directory (for debugging)
         run: ls -la ./project
         working-directory: ./project
