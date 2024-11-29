@@ -19,12 +19,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./project/src  # Zmiana ścieżki do src w katalogu project
+          cd ./project/src  
           npm install
 
       - name: Build application
         run: |
-          cd ./project/src  # Zmiana ścieżki do src w katalogu project
+          cd ./project/src  
           npm run build
 
       - name: Deploy to GitHub Pages

@@ -9,22 +9,17 @@ on:
       - "branch"
 
 jobs:
-  backend-docker-build:
-    name: Build and Test Backend Docker Image
+  docker-build-and-test:
+    name: Build and Test Docker Images
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Debug repository structure
+      - name: Set up Docker Compose
         run: |
-          echo "Listing root directory"
-          ls -al
-          echo "Listing project directory"
-          ls -al ./project
-          echo "Listing backend directory"
-          ls -al ./project/backend
+          docker-compose -f ./docker-compose.yml up -d  # Uruchom wszystkie usługi w tle (z backendem, frontendem i db)
 
       - name: Build Backend Docker Image
         working-directory: ./project/backend
@@ -35,25 +30,6 @@ jobs:
         run: |
           docker run --rm -p 3000:3000 backend-app npm start
 
-  frontend-docker-build:
-    name: Build and Test Frontend Docker Image
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Debug frontend directory
-        run: |
-          echo "Listing frontend directory"
-          ls -al ./project
-
-      - name: Install dependencies and build frontend
-        working-directory: ./project
-        run: |
-          npm install
-          npm run build
-
       - name: Build Frontend Docker Image
         working-directory: ./project
         run: |
@@ -62,3 +38,7 @@ jobs:
       - name: Test Frontend Docker Image
         run: |
           docker run --rm -p 8080:80 frontend-app
+
+      - name: Stop and remove containers
+        run: |
+          docker-compose -f ./docker-compose.yml down  # Zatrzymaj i usuń kontenery po teście
