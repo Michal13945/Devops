@@ -1,4 +1,4 @@
-name: App Build and Deploy
+name: App Deploy
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - branch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,12 +25,12 @@ jobs:
         run: npm install
         working-directory: ./project
 
-      - name: List build directory (for debugging)
-        run: ls -la ./project
+      - name: List public directory (for debugging)
+        run: ls -la ./project/public
         working-directory: ./project
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./project
+          publish_dir: ./project/public
