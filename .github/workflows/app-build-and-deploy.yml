@@ -16,18 +16,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Debug repository structure
+        run: ls -R .
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "14"
-
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./project
-
-      - name: List public directory (for debugging)
-        run: ls -la ./project/public
-        working-directory: ./project
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
