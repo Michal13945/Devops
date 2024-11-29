@@ -1,0 +1,60 @@
+name: Docker Build Check
+
+on:
+  push:
+    branches:
+      - "branch"
+  pull_request:
+    branches:
+      - "branch"
+
+jobs:
+  backend-docker-build:
+    name: Build and Test Backend Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Debug backend directory
+        run: |
+          echo "Listing backend directory"
+          ls -al ./backend
+
+      - name: Build Backend Docker Image
+        working-directory: ./backend
+        run: |
+          docker build -t backend-app .  # Budujemy backend Docker image
+
+      - name: Test Backend Docker Image
+        run: |
+          docker run --rm -p 3000:3000 backend-app npm start  # Uruchamiamy kontener z backendem
+
+  frontend-docker-build:
+    name: Build and Test Frontend Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Debug frontend directory
+        run: |
+          echo "Listing frontend directory"
+          ls -al ./src  # Przechodzimy do katalogu src, bo tam jest frontend
+
+      - name: Install dependencies and build frontend
+        working-directory: ./src
+        run: |
+          npm install
+          npm run build  # Budujemy aplikację frontendową
+
+      - name: Build Frontend Docker Image
+        working-directory: ./src
+        run: |
+          docker build -t frontend-app .  # Budujemy frontend Docker image
+
+      - name: Test Frontend Docker Image
+        run: |
+          docker run --rm -p 8080:80 frontend-app  # Uruchamiamy kontener z frontendem

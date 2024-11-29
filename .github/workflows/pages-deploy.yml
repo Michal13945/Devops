@@ -20,13 +20,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./src
-          npm install
+          cd ./src  # Przechodzimy do katalogu src, gdzie znajduje się aplikacja React
+          npm install  # Instalujemy zależności w folderze src
 
       - name: Build application
         run: |
-          cd ./src
-          npm run build  # Zmienione z 'start' na 'build'
+          cd ./src  # Przechodzimy do katalogu src
+          npm run build  # Budujemy aplikację React
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
