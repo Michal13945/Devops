@@ -32,11 +32,11 @@ jobs:
         working-directory: ./project
 
       - name: List build directory (for debugging)
-        run: ls -la ./project/build
+        run: ls -la ./project
         working-directory: ./project
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./project/build
+          publish_dir: ./project
